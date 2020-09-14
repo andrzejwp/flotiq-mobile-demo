@@ -31,9 +31,16 @@ import IndicatorOverlay from '../../components/Indicators/IndicatorOverlay';
 import ListHeaderIndicator from '../../components/Indicators/List/Header/ListHeaderIndicator';
 import ListFooterIndicator from '../../components/Indicators/List/Footer/ListFooterIndicator';
 import CustomListItem from '../../components/CustomListItem/CustomListItem';
+import SplashScreen from 'react-native-splash-screen';
 
 const ContentTypeObjectsScreen = (props) => {
-    const { contentTypeName, partOfTitleProps, withReachTextProps, refetchData, contentTypeLabel } = props.route.params;
+    //const { contentTypeName, partOfTitleProps, withReachTextProps, refetchData, contentTypeLabel } = props.route.params;
+    
+    const partOfTitleProps = ['name']
+    const withReachTextProps = ['description']
+    const refetchData = true
+    const contentTypeName = "product"
+
     const contentTypesDefinitions = useSelector((state) => state.contentTypes.definitions);
     const contentTypeObjects = useSelector((state) => state.contentTypes.objects);
     const totalPagesMax = useSelector((state) => state.contentTypes.totalPages);
@@ -48,6 +55,12 @@ const ContentTypeObjectsScreen = (props) => {
 
     const [formModalVisibility, setFormModalVisibility] = useState(false);
     const [editContentId, setEditContentId] = useState(null);
+
+    useEffect(() => {
+        if (!isLoading) {
+            SplashScreen.hide();
+        }
+    }, [isLoading]);
 
     useEffect(() => {
         if (route && route.searchBoxVisible) {
@@ -358,8 +371,9 @@ const ContentTypeObjectsScreen = (props) => {
 };
 
 export const contentTypeObjectsScreenOptions = ({ route, navigation }) => {
-    const screenTitle = route.params.contentTypeLabel
-        ? `${route.params.contentTypeLabel} - objects` : 'Content Type Objects';
+    //const screenTitle = route.params.contentTypeLabel
+    //    ? `${route.params.contentTypeLabel} - objects` : 'Content Type Objects';
+    const screenTitle = "Products"
     return (
         {
             title: screenTitle,

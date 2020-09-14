@@ -20,6 +20,9 @@ import FlotiqNavigator from './app/navigation/FlotiqNavigator/FlotiqNavigator';
 import contentTypesReducer from './app/store/reducers/contentTypes';
 import authReducer from './app/store/reducers/auth';
 
+AsyncStorage.setItem('flotiqApiKey', "<< YOUR FLOTIQ READ-ONLY API KEY >>");
+
+
 enableScreens();
 
 const rootReducer = combineReducers({
